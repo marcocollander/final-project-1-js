@@ -41,9 +41,37 @@
 .expenses {
   &__header {
     margin: 20px 0;
+  }
 
-    &-heading {
-      margin: 20px 0;
-    }
+  &__heading {
+    margin: 20px 0;
+    font-size: 3rem;
+  }
+
+  &__aside {
+    display: flex;
+  }
+
+  &__btn {
+    width: 33.33%;
+    padding: 10px 30px;
+    border: none;
+  }
+
+  &__input {
+    width: 33.33%;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
+
+.saldo {
+  &__text {
+    margin-right: 10px;
+    font-size: 1.6rem;
+  }
+
+  &__input {
+    font-size: 1.6rem;
   }
 }

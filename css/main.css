@@ -97,11 +97,45 @@ body {
   margin: 20px 0;
 }
 
-.expenses__header-heading {
+.expenses__heading {
   margin: 20px 0;
+  font-size: 3rem;
+}
+
+.expenses__aside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.expenses__btn {
+  width: 33.33%;
+  padding: 10px 30px;
+  border: none;
+}
+
+.expenses__input {
+  width: 33.33%;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.saldo__text {
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+
+.saldo__input {
+  font-size: 1.6rem;
 }
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
   text-align: center;
+  font-size: 1.8rem;
+  background-color: #000;
 }
 /*# sourceMappingURL=main.css.map */
