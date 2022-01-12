@@ -1,0 +1,49 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.income,
+.expenses {
+  min-height: 30vh;
+}
+
+.income {
+  &__header {
+    margin: 20px 0;
+  }
+
+  &__heading {
+    margin: 20px 0;
+    font-size: 3rem;
+  }
+
+  &__aside {
+    display: flex;
+  }
+
+  &__btn {
+    width: 33.33%;
+    padding: 10px 30px;
+    border: none;
+  }
+
+  &__input {
+    width: 33.33%;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
+
+.expenses {
+  &__header {
+    margin: 20px 0;
+
+    &-heading {
+      margin: 20px 0;
+    }
+  }
+}

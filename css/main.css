@@ -1,0 +1,107 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #333;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  color: #fff;
+}
+
+.wrraper {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__message-input {
+  padding: 5px 10px;
+  font-size: 1.8rem;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+}
+
+.income,
+.expenses {
+  min-height: 30vh;
+}
+
+.income__header {
+  margin: 20px 0;
+}
+
+.income__heading {
+  margin: 20px 0;
+  font-size: 3rem;
+}
+
+.income__aside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.income__btn {
+  width: 33.33%;
+  padding: 10px 30px;
+  border: none;
+}
+
+.income__input {
+  width: 33.33%;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.expenses__header {
+  margin: 20px 0;
+}
+
+.expenses__header-heading {
+  margin: 20px 0;
+}
+
+.footer {
+  text-align: center;
+}
+/*# sourceMappingURL=main.css.map */
