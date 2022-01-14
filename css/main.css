@@ -58,80 +58,97 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 20px;
 }
 
 .income,
 .expenses {
   min-height: 30vh;
+  padding: 10px;
+}
+
+.income {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .income__header {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .income__heading {
-  margin: 20px 0;
-  font-size: 3rem;
+  margin: 10px 0;
+  font-size: 2.5rem;
 }
 
 .income__aside {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .income__btn {
-  width: 33.33%;
-  padding: 10px 30px;
+  width: 20%;
+  padding: 10px;
   border: none;
 }
 
 .income__input {
-  width: 33.33%;
-  font-size: 1.6rem;
+  width: 30%;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .expenses__header {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .expenses__heading {
-  margin: 20px 0;
-  font-size: 3rem;
+  margin: 10px 0;
+  font-size: 2.5rem;
 }
 
 .expenses__aside {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .expenses__btn {
-  width: 33.33%;
-  padding: 10px 30px;
+  width: 20%;
+  padding: 10px;
   border: none;
 }
 
 .expenses__input {
-  width: 33.33%;
-  font-size: 1.6rem;
+  width: 30%;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .saldo__text {
   margin-right: 10px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .saldo__input {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .footer {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   padding: 30px;
   text-align: center;
