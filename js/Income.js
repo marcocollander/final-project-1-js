@@ -1,4 +1,4 @@
-class Income {
+export default class Income {
   constructor(name, aumont) {
     this.name = name;
     this.amounr = amount;
