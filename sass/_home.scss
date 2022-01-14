@@ -3,64 +3,69 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 }
 
 .income,
 .expenses {
   min-height: 30vh;
+  padding: 10px;
 }
 
 .income {
+  display: flex;
+  flex-direction: column;
+
   &__header {
-    margin: 20px 0;
+    margin: 10px 0;
   }
 
   &__heading {
-    margin: 20px 0;
-    font-size: 3rem;
+    margin: 10px 0;
+    font-size: 2.5rem;
   }
 
   &__aside {
     display: flex;
+    justify-content: space-between;
   }
 
   &__btn {
-    width: 33.33%;
-    padding: 10px 30px;
+    width: 20%;
+    padding: 10px;
     border: none;
   }
 
   &__input {
-    width: 33.33%;
-    font-size: 1.6rem;
+    width: 30%;
+    font-size: 1.2rem;
     text-align: center;
   }
 }
 
 .expenses {
   &__header {
-    margin: 20px 0;
+    margin: 10px 0;
   }
 
   &__heading {
-    margin: 20px 0;
-    font-size: 3rem;
+    margin: 10px 0;
+    font-size: 2.5rem;
   }
 
   &__aside {
     display: flex;
+    justify-content: space-between;
   }
 
   &__btn {
-    width: 33.33%;
-    padding: 10px 30px;
+    width: 20%;
+    padding: 10px;
     border: none;
   }
 
   &__input {
-    width: 33.33%;
-    font-size: 1.6rem;
+    width: 30%;
+    font-size: 1.2rem;
     text-align: center;
   }
 }
@@ -68,10 +73,10 @@
 .saldo {
   &__text {
     margin-right: 10px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   &__input {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 }
