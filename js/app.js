@@ -1,18 +1,18 @@
 const income = () => {
-
   const qs = selector => document.querySelector(selector);
   const cel = el => document.createElement(el);
 
   const btnAddIncome = qs('#incomeBtn');
 
-  const addIncomeItem = () => {
-    let incomeName = qs('#incomeName').value;
-    let incomeAmount = qs('#incomeAmount').value;
-    const list = qs('.income__list');
-    list.appendChild(cel('li')).innerText = `${incomeName} ${incomeAmount}`;
-  };
+  const incomeName = qs('#incomeName');
+  const incomeAmount = qs('#incomeAmount');
 
-  const addBtns = () => {
+  const addIncoment = () => {
+    const list = qs('.income__list');
+    list.appendChild(
+      cel('li')
+    ).innerText = `${incomeName.value} ${incomeAmount.value}`;
+
     const aside = qs('.income__btns');
     const div = cel('div');
 
@@ -21,15 +21,24 @@ const income = () => {
     div.appendChild(btnEdit);
     aside.appendChild(div);
 
+    btnEdit.addEventListener('click', () => {});
+
     const btnDelete = cel('button');
     btnDelete.innerText = 'Usuń';
     div.appendChild(btnDelete);
     aside.appendChild(div);
+
+    btnDelete.addEventListener('click', () => {
+      list.remove();
+      btnDelete.remove();
+      btnEdit.remove();
+      incomeName.value = '';
+      incomeAmount.value = '';
+    });
   };
 
   btnAddIncome.addEventListener('click', () => {
-    addIncomeItem();
-    addBtns();
+    addIncoment();
   });
 };
 

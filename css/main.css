@@ -129,6 +129,10 @@ body {
   text-align: center;
 }
 
+.expenses {
+  padding-top: 20px;
+}
+
 .expenses__header {
   margin: 10px 0;
 }
@@ -166,6 +170,15 @@ body {
 
 .saldo__input {
   font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  .main {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
 }
 
 .footer {

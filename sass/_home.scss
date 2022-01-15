@@ -57,6 +57,7 @@
 }
 
 .expenses {
+  padding-top: 20px;
   &__header {
     margin: 10px 0;
   }
@@ -92,5 +93,11 @@
 
   &__input {
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row;
   }
 }
