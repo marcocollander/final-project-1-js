@@ -3,11 +3,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  &__logo{
+    width: 100%;
+    height: 200px;
+    background-image: url('../images/logo-start.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
 
   &__message {
+    margin-bottom: 30px;
     &-input {
       padding: 5px 10px;
       font-size: 1.8rem;
     }
   }
+
+
+
 }
