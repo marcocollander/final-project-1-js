@@ -24,6 +24,20 @@
     font-size: 2.5rem;
   }
 
+  &__edition {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__list {
+    font-size: 1.4rem;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__aside {
     display: flex;
     justify-content: space-between;
