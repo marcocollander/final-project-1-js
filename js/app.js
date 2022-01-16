@@ -1,4 +1,4 @@
-const income = () => {
+
   const qs = selector => document.querySelector(selector);
   const cel = el => document.createElement(el);
 
@@ -40,6 +40,4 @@ const income = () => {
   btnAddIncome.addEventListener('click', () => {
     addIncoment();
   });
-};
 
-income();
