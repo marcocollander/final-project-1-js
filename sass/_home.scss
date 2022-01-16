@@ -7,16 +7,20 @@
 
 .income,
 .expenses {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 30vh;
   padding: 10px;
+  border: 1px solid #fff;
 }
 
 .income {
-  display: flex;
-  flex-direction: column;
-
   &__header {
     margin: 10px 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
   }
 
   &__heading {
@@ -54,12 +58,19 @@
     font-size: 1.2rem;
     text-align: center;
   }
+
+  &__saldo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .expenses {
-  padding-top: 20px;
   &__header {
     margin: 10px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #fff;
   }
 
   &__heading {
