@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,75 +9,78 @@
 </head>
 
 <body>
+<div class="wrraper">
+  <header class="header">
+    <div class="header__logo"></div>
 
-  <div class="wrraper">
-   <header class="header">
-      <div class="header__logo">
+    <aside class="header__message">
+      <label for="message">
+        <input
+          id="message"
+          type="text"
+          class="header__message-input"
+          value="Możesz jeszcze wydać 0 złoty"
+          maxlength="100"
+        />
+      </label>
+    </aside>
+  </header>
+
+  <main class="main">
+    <section class="income">
+      <header class="income__header">
+        <h1 class="income__heading">Przychody</h1>
+        <aside class="income__aside">
+          <label for="incomeName"></label>
+          <input id="incomeName" class="income__input" type="text" placeholder="Nazwa przychodu">
+          <label for="incomeAmount"></label>
+          <input id="incomeAmount" class="income__input" type="text" placeholder="Kwota">
+          <button id="incomeBtn" class="income__btn">Dodaj</button>
+        </aside>
+      </header>
+
+      <article class="income__edition">
+        <ul class="income__list"></ul>
+        <aside class="income__btns"></aside>
+      </article>
+
+      <div class="saldo">
+        <label class="saldo__text" for="incomeSum">Suma przychodów: </label>
+        <input id="incomeSum" class="saldo__input" type="text" placeholder="0 zł">
       </div>
+    </section>
 
-      <aside class="header__message">
-        <label for="message">
-          <input id="message" type="text" class="header__message-input"
-                 value="Możesz jeszcze wydać 0 złoty" maxlength="100" />
-        </label>
-      </aside>
-    </header>
+    <section class="expenses">
+      <header class="expenses__header">
+        <h1 class="expenses__heading">Wydatki</h1>
+        <aside class="expenses__aside">
+          <label for="expensesName"></label><input id="expensesName" class="expenses__input" type="text"
+                                                   placeholder="Nazwa wydatku">
+          <label for="expenses"></label><input id="expenses" class="expenses__input" type="text" placeholder="Kwota">
+          <button class="expenses__btn">Dodaj</button>
+        </aside>
+      </header>
 
-    <main class="main">
-      <section class="income">
-        <header class="income__header">
-          <h1 class="income__heading">Przychody</h1>
-          <aside class="income__aside">
-            <input id="incomeName" class="income__input" type="text" placeholder="Nazwa przychodu" />
-            <input id="incomeAmount" class="income__input" type="text" placeholder="Kwota" />
-            <button id="incomeBtn" class="income__btn">Dodaj</button>
-          </aside>
-        </header>
+      <article class="expenses__edition">
+        <ul class="expenses__edition-list"></ul>
+        <aside class="expenses_edition-btns"></aside>
+      </article>
 
-        <article class="income__edition">
-          <ul class="income__list"></ul>
-          <aside class="income__btns">
+      <div class="saldo">
+        <label class="saldo__text" for="saldoText">Suma wydatków: </label>
+        <input id="saldoText" class="saldo__input" type="text"
+               placeholder="0 zł">
+      </div>
+    </section>
+  </main>
 
-          </aside>
-        </article>
+  <footer>
+    <p class="footer__text">
+      &copy; 2022, by Zenon Marek Raubuć, All rights reserved
+    </p>
+  </footer>
+</div>
 
-        <div class="saldo">
-          <label class="saldo__text" for="incomeSum">Suma przychodów: </label>
-          <input id="incomeSum" class=saldo__input type="text" placeholder="0 zł" />
-        </div>
-      </section>
-
-      <section class="expenses">
-        <header class="expenses__header">
-          <h1 class="expenses__heading">Wydatki</h1>
-          <aside class="expenses__aside">
-            <input class="expenses__input" type="text" placeholder="Nazwa wydatku" />
-            <input class="expenses__input" type="text" placeholder="Kwota" />
-            <button class="expenses__btn">Dodaj</button>
-          </aside>
-        </header>
-
-        <article class="expenses__edition">
-          <ul class="expenses__edition-list"></ul>
-          <aside class="expenses_edition-btns"></aside>
-        </article>
-
-        <div class="saldo">
-          <label class="saldo__text" for="saldoText">Suma wydatków: </label>
-          <input id="saldoText" class="saldo__input" type="text" placeholder="0
-          zł" />
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p class="footer__text">
-        &copy; 2022, by Zenon Marek Raubuć, All rights reserved
-      </p>
-    </footer>
-  </div>
-
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
-
 </html>
