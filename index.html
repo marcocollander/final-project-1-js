@@ -17,7 +17,10 @@
       </div>
 
       <aside class="header__message">
-        <input type="text" class="header__message-input" value="Możesz jeszcze wydać 0 złoty" maxlength="100" />
+        <label for="message">
+          <input id="message" type="text" class="header__message-input"
+                 value="Możesz jeszcze wydać 0 złoty" maxlength="100" />
+        </label>
       </aside>
     </header>
 
@@ -40,7 +43,7 @@
         </article>
 
         <div class="saldo">
-          <label class="saldo__text" for="">Suma przychodów: </label>
+          <label class="saldo__text" for="incomeSum">Suma przychodów: </label>
           <input id="incomeSum" class=saldo__input type="text" placeholder="0 zł" />
         </div>
       </section>
@@ -61,13 +64,15 @@
         </article>
 
         <div class="saldo">
-          <label class="saldo__text" for="">Suma wydatków: </label>
-          <input class="saldo__input" type="text" placeholder="0 zł" />
+          <label class="saldo__text" for="saldoText">Suma wydatków: </label>
+          <input id="saldoText" class="saldo__input" type="text" placeholder="0
+          zł" />
+        </div>
       </section>
     </main>
 
     <footer class="footer">
-      <p footer__text>
+      <p class="footer__text">
         &copy; 2022, by Zenon Marek Raubuć, All rights reserved
       </p>
     </footer>
