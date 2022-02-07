@@ -39,10 +39,10 @@
 
   &__btns {
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
   }
 
-  &__aside {
+  &__form {
     display: flex;
     justify-content: space-between;
   }
