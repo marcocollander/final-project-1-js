@@ -1,0 +1,23 @@
+{
+  "name": "final-project-1",
+  "version": "1.0.0",
+  "description": "Final project as part of bootcamp js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcocollander/final-project-1-js.git"
+  },
+  "keywords": [],
+  "author": "Zenon Marek Raubuć",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcocollander/final-project-1-js/issues"
+  },
+  "homepage": "https://github.com/marcocollander/final-project-1-js#readme",
+  "devDependencies": {
+    "prettier": "2.5.1"
+  }
+}

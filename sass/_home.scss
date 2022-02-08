@@ -7,16 +7,20 @@
 
 .income,
 .expenses {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 30vh;
   padding: 10px;
+  border: 1px solid #fff;
 }
 
 .income {
-  display: flex;
-  flex-direction: column;
-
   &__header {
     margin: 10px 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
   }
 
   &__heading {
@@ -24,7 +28,21 @@
     font-size: 2.5rem;
   }
 
-  &__aside {
+  &__edition {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__list {
+    font-size: 1.4rem;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__form {
     display: flex;
     justify-content: space-between;
   }
@@ -40,11 +58,19 @@
     font-size: 1.2rem;
     text-align: center;
   }
+
+  &__saldo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .expenses {
   &__header {
     margin: 10px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #fff;
   }
 
   &__heading {
@@ -78,5 +104,11 @@
 
   &__input {
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row;
   }
 }

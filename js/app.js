@@ -1,24 +1,40 @@
-const income = () => {
-  const qs = (selector) => document.querySelector(selector);
-  const btnAddIncome = qs('#incomeBtn');
+// helper function
+const querySelector = selector => document.querySelector(selector);
 
-  const cel = (el) => document.createElement(el);
+// MODEL - application data
 
+const income = [
+  {
+    name: '',
+    amount: '',
+    sum: '',
+  },
+];
 
-  const addIncomeItem = () => {
-    let incomeName = qs('#incomeName').value;
-    let incomeAmount = qs('#incomeAmount').value;
-    const list = qs('.income__list');
-    list.appendChild(cel('li')).innerText = `${incomeName} ${incomeAmount}`
-  }
+const expense = [
+  {
+    name: '',
+    amount: '',
+    sum: '',
+  },
+];
 
-  btnAddIncome.addEventListener('click', () => {
-    addIncomeItem();
-  })
+const availableAmout = {
+  set amount(amount) {
+    // ??
+    this.amount = amount;
+    this.amount = income[0].amount - expense[0].amount;
+    //TODO
+  },
+};
 
+const form = querySelector('.income__form');
+const incomeList = querySelector('.income__list');
+const boxOnButtons = querySelector('div.income__btns');
 
-
-}
-
-income();
-
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const elements = e.currentTarget.elements;
+  incomeList.innerHTML = `<li>${elements[0].value} - ${elements[1].value}</li>`;
+  boxOnButtons.innerHTML = `<button>Edytuj</button><button>Usuń</button>`;
+});
