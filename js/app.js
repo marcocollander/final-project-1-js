@@ -1,40 +1,60 @@
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 // helper function
 const querySelector = selector => document.querySelector(selector);
 
 // MODEL - application data
-
-const income = [
+let income = [
   {
+    id: 'some-uuid-should-be-here',
     name: '',
     amount: '',
     sum: '',
   },
 ];
 
-const expense = [
+const expenses = [
   {
+    id: 'some-uuid-should-be-here',
     name: '',
     amount: '',
     sum: '',
   },
 ];
 
-const availableAmout = {
-  set amount(amount) {
-    // ??
-    this.amount = amount;
-    this.amount = income[0].amount - expense[0].amount;
-    //TODO
-  },
+let availableAmount = income[0].amount - expenses[0].amount;
+
+// VIEW
+const renderIncome = () => {
+  const boxOnButtons = querySelector('.income__btns');
+
+  querySelector('.income__list').innerHTML = income.map(
+    ({ name, amount }) => `<li>${name} - ${amount} zł</li>`
+  );
+
+  querySelector(
+    '.income__btns'
+  ).innerHTML = `<button>Edytuj</button><button>Usuń</button>`;
 };
 
-const form = querySelector('.income__form');
-const incomeList = querySelector('.income__list');
-const boxOnButtons = querySelector('div.income__btns');
+const renderExpenses = () => {};
 
-form.addEventListener('submit', e => {
+const renderApp = () => {
+  renderIncome();
+  renderExpenses();
+};
+
+// UPDATE (CONTROLER)
+const addIncome = income => {
+  renderApp();
+};
+
+// Events
+querySelector('.income__form').addEventListener('submit', e => {
   e.preventDefault();
-  const elements = e.currentTarget.elements;
-  incomeList.innerHTML = `<li>${elements[0].value} - ${elements[1].value}</li>`;
-  boxOnButtons.innerHTML = `<button>Edytuj</button><button>Usuń</button>`;
+  const { incomeName, incomeAmount } = e.currentTarget.elements;
+  const incomeId = incomeName.dataset.id;
+
+  addIncome(incomeId, incomeName.value, incomeAmount.value);
 });
+
+// renderApp();

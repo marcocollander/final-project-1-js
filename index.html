@@ -9,15 +9,12 @@
 </head>
 
 <body>
-<div class="wrraper">
+<div class='wrapper'>
   <header class="header">
     <div class="header__logo"></div>
 
     <aside class="header__message">
-      <label for="message">
         <input id="message" type="text" class="header__message-input" value="Możesz jeszcze wydać 0 złoty">
-
-      </label>
     </aside>
   </header>
 
@@ -27,13 +24,12 @@
         <h1 class="income__heading">Przychody</h1>
 
         <form class="income__form">
-          <label for="incomeName"></label>
-          <input id="incomeName" name="incomeName" class="income__input" type="text" placeholder="Nazwa przychodu">
-          <label for="incomeAmount"></label>
-          <input id="incomeAmount" name="incomAmount" class="income__input" type="text" placeholder="Kwota">
+          <input id="incomeName" name="incomeName" data-id="some-uuid-should-be-here" class="income__input" type="text"
+                 placeholder="Nazwa przychodu">
+          <input id="incomeAmount" name="incomeAmount" data-id="some-uuid-be-here" class="income__input" type="text"
+                 placeholder="Kwota">
           <button id="incomeBtn" class="income__btn" type="submit">Dodaj</button>
         </form>
-
       </header>
 
       <div class="income__edition">
@@ -51,9 +47,8 @@
       <header class="expenses__header">
         <h1 class="expenses__heading">Wydatki</h1>
         <div class="expenses__aside">
-          <label for="expensesName"></label>
           <input id="expensesName" class="expenses__input" type="text" placeholder="Nazwa wydatku">
-          <label for="expenses"></label><input id="expenses" class="expenses__input" type="text" placeholder="Kwota">
+          <input id="expenses" class="expenses__input" type="text" placeholder="Kwota">
           <button class="expenses__btn" type="submit">Dodaj</button>
         </div>
       </header>
@@ -65,18 +60,18 @@
 
       <div class="saldo">
         <label class="saldo__text" for="saldoText">Suma wydatków: </label>
-        <input id="saldoText" class="saldo__input" type="text"
-               placeholder="0 zł">
+        <input id="saldoText" class="saldo__input" type="text" placeholder="0 zł">
       </div>
     </section>
   </main>
+</div>
 
   <footer class="footer">
     <p class="footer__text">
       &copy; 2022, by Zenon Marek Raubuć, All rights reserved
     </p>
   </footer>
-</div>
+
 
 <script src="js/app.js"></script>
 </body>
