@@ -5,18 +5,17 @@
   align-items: center;
 }
 
-.income,
+.incomes,
 .expenses {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 30vh;
   padding: 10px;
   border: 1px solid #fff;
 }
 
-.income {
+.incomes {
   &__header {
     margin: 10px 0;
     border-bottom: 1px solid #fff;
@@ -29,12 +28,23 @@
   }
 
   &__edition {
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
   }
 
   &__list {
     font-size: 1.4rem;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        padding: 5px 10px;
+        margin-right: 5px;
+      }
+    }
   }
 
   &__btns {
@@ -57,12 +67,6 @@
     width: 30%;
     font-size: 1.2rem;
     text-align: center;
-  }
-
-  &__saldo {
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
 }
 
@@ -97,6 +101,7 @@
 }
 
 .saldo {
+  padding: 20px;
   &__text {
     margin-right: 10px;
     font-size: 1.4rem;
@@ -110,5 +115,6 @@
 @media (min-width: 768px) {
   .main {
     flex-direction: row;
+    align-items: flex-start;
   }
 }
