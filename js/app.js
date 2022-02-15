@@ -1,32 +1,47 @@
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
+
 // helper function
 const querySelector = selector => document.querySelector(selector);
+const createElement = elementName => document.createElement(elementName);
 
 // MODEL - application data
 let incomes = [];
-let sum = 0;
-
-const expenses = [
-  {
-    id: 'some-uuid-should-be-here',
-    name: '',
-    amount: '',
-    sum: '',
-  },
-];
-
-// let availableAmount = income[0].amount - expenses[0].amount;
+let expenses = [];
 
 // VIEW
 const renderIncomes = () => {
-  querySelector('.income__list').innerHTML = incomes
-    .map(
-      ({ name, amount }) =>
-        `<li><span>${name} - ${amount} zł</span><span><button>Edytuj</button><button>Usuń</button></span></li>`
-    )
-    .join(' ');
+  querySelector('.incomes__list').innerHTML = '';
+  let sum = 0;
+  querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
 
-  querySelector('#incomeSum').innerHTML = sum.toString();
+  incomes.forEach(({ id, name, amount }) => {
+    const li = createElement('li');
+    li.textContent = `${name} - ${amount} zł`;
+
+    const editBtn = createElement('button');
+    editBtn.textContent = 'Edytuj';
+    li.appendChild(editBtn);
+
+    const deleteBtn = createElement('button');
+    deleteBtn.textContent = 'Usuń';
+    li.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', e => {
+      deleteIncome(id);
+    });
+
+    sum += parseInt(amount);
+
+    editBtn.addEventListener('click', e => {
+      editIncome(id);
+    });
+
+    querySelector('.incomes__list').appendChild(li);
+    querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
+    querySelector(
+      '#message'
+    ).value = `Możesz jeszcze wydać ${sum.toString()} zł`;
+  });
 };
 
 const renderExpenses = () => {};
@@ -37,15 +52,20 @@ const renderApp = () => {
 
 // UPDATE (CONTROLER)
 const addIncome = newIncome => {
+  let sum = 0;
   console.log(incomes);
   incomes = [...incomes, newIncome];
   console.log(incomes);
-  incomes.forEach(income => {
-    sum += parseInt(income.amount);
-  });
   renderApp();
 };
 
+const editIncome = incomeId => {};
+
+const deleteIncome = incomeId => {
+  incomes = incomes.filter(({ id }) => id !== incomeId);
+  console.log(incomes);
+  renderApp();
+};
 // Events
 querySelector('.incomes__form').addEventListener('submit', e => {
   e.preventDefault();
@@ -59,9 +79,5 @@ querySelector('.incomes__form').addEventListener('submit', e => {
     amount: incomeAmount.value,
   };
 
-  console.log(newIncome);
-
   addIncome(newIncome);
 });
-
-// renderApp();

@@ -101,13 +101,12 @@
 }
 
 .saldo {
-  padding: 20px;
   &__text {
-    margin-right: 10px;
     font-size: 1.4rem;
   }
 
   &__input {
+    text-align: center;
     font-size: 1.2rem;
   }
 }
