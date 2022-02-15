@@ -11,20 +11,24 @@ let expenses = [];
 // VIEW
 const renderIncomes = () => {
   querySelector('.incomes__list').innerHTML = '';
+  querySelector('.incomes__btns').innerHTML = '';
   let sum = 0;
   querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
 
   incomes.forEach(({ id, name, amount }) => {
     const li = createElement('li');
+    const div = createElement('div');
+
     li.textContent = `${name} - ${amount} zł`;
+
 
     const editBtn = createElement('button');
     editBtn.textContent = 'Edytuj';
-    li.appendChild(editBtn);
+    div.appendChild(editBtn);
 
     const deleteBtn = createElement('button');
     deleteBtn.textContent = 'Usuń';
-    li.appendChild(deleteBtn);
+    div.appendChild(deleteBtn);
 
     deleteBtn.addEventListener('click', e => {
       deleteIncome(id);
@@ -37,6 +41,8 @@ const renderIncomes = () => {
     });
 
     querySelector('.incomes__list').appendChild(li);
+    querySelector('.incomes__btns').appendChild(div);
+
     querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
     querySelector(
       '#message'
@@ -44,7 +50,7 @@ const renderIncomes = () => {
   });
 };
 
-const renderExpenses = () => {};
+const renderExpenses = () => { };
 
 const renderApp = () => {
   renderIncomes();
@@ -59,7 +65,7 @@ const addIncome = newIncome => {
   renderApp();
 };
 
-const editIncome = incomeId => {};
+const editIncome = incomeId => { };
 
 const deleteIncome = incomeId => {
   incomes = incomes.filter(({ id }) => id !== incomeId);
