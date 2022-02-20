@@ -82,6 +82,9 @@ body {
 .incomes__list li {
   padding: 10px;
 }
+.incomes__list li input {
+  width: 80px;
+}
 .incomes__btns button {
   padding: 9px 18px;
   margin-right: 10px;
