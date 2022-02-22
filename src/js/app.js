@@ -9,38 +9,27 @@ const createElement = (elementName) => document.createElement(elementName);
 const state = { incomes: [], expenses: [] };
 
 //VIEW
-
-const editIncomeYes = (id, li, div) => {
-  li.innerHTML = '';
-  div.innerHTML = '';
-  const inputName = createElement('input');
-  const inputAmount = createElement('input');
-  const btnConfirm = createElement('button');
-  btnConfirm.innerText = 'Potwierdź';
-
-  li.appendChild(inputName);
-  li.appendChild(inputAmount);
-  div.appendChild(btnConfirm);
-
-  btnConfirm.addEventListener('click', () => {
-    const newIncome = {
-      id: id,
-      name: inputName.value,
-      amount: inputAmount.value,
-      isEditable: false,
-    };
-
-    updateIncome(newIncome);
-  });
+const createBtn = (parentElement, textContent, callback, id) => {
+  const btn = createElement('button');
+  btn.textContent = textContent;
+  parentElement.appendChild(btn);
+  btn.addEventListener('click', () => callback(id));
 };
 
-function editIncomeNo() {}
+const createInput = (parentElem, valueName, valueAmount) => {
+  const inputName = createElement('input');
+  const inputAmount = createElement('input');
+  parentElem.appendChild(inputName);
+  parentElem.appendChild(inputAmount);
+  inputName.value = `${valueName}`;
+  inputAmount.value = `${valueAmount}`;
+};
+
+// INCOMES
 
 const renderIncomes = () => {
   querySelector('.incomes__list').innerHTML = '';
   querySelector('.incomes__btns').innerHTML = '';
-  let sum = 0;
-  querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
 
   state.incomes.forEach(({ id, name, amount, isEditable }) => {
     const li = createElement('li');
@@ -48,48 +37,31 @@ const renderIncomes = () => {
     li.textContent = `${name} - ${amount} zł`;
 
     if (isEditable) {
-      const btnYes = createElement('button');
-      btnYes.innerText = 'Tak';
-      btnYes.addEventListener('click', () => {
-        editIncomeYes(id, li, div);
-      });
-      const btnNo = createElement('button');
-      btnNo.innerText = 'Nie';
-      btnNo.addEventListener('click', () => {
-        editIncomeNo();
-      });
-      div.appendChild(btnYes);
-      div.appendChild(btnNo);
+      li.innerHTML = '';
+
+      createInput(li, name, amount);
+      createBtn(div, 'Tak', updateIncome, id);
+      createBtn(div, 'Nie', toggleIncomeEditable, id);
     } else {
-      const editBtn = createElement('button');
-      editBtn.textContent = 'Edytuj';
-      div.appendChild(editBtn);
-
-      editBtn.addEventListener('click', () => {
-        editIncome(id);
-      });
-
-      const deleteBtn = createElement('button');
-      deleteBtn.textContent = 'Usuń';
-      div.appendChild(deleteBtn);
-
-      deleteBtn.addEventListener('click', () => {
-        deleteIncome(id);
-      });
+      createBtn(div, 'Edytuj', toggleIncomeEditable, id);
+      createBtn(div, 'Usuń', deleteIncome, id);
     }
-    sum += parseInt(amount);
     querySelector('.incomes__list').appendChild(li);
     querySelector('.incomes__btns').appendChild(div);
-
-    querySelector('#incomeSum').textContent = `${sum.toString()} zł`;
-    querySelector(
-      '#message'
-    ).value = `Możesz jeszcze wydać ${sum.toString()} zł`;
   });
+};
+
+const renderSumIncomes = () => {
+  const refSumIncomes = querySelector('#sumIncomes');
+  let sumIncomes = sum(state.incomes);
+
+  refSumIncomes.innerText = `${sumIncomes} zł`;
+  querySelector('#message').value = `Możesz jeszcze wydać ${sumIncomes} zł`;
 };
 
 const renderApp = () => {
   renderIncomes();
+  renderSumIncomes();
 };
 
 // UPDATE (CONTROLER)
@@ -98,24 +70,22 @@ const addIncome = (newIncome) => {
   renderApp();
 };
 
-const editIncome = (incomeId) => {
-  console.log(incomeId);
-  state.incomes.map((income) => {
-    if (income.id === incomeId) {
-      income.isEditable = true;
-    }
-  });
+const toggleIncomeEditable = (id) => {
+  state.incomes = state.incomes.map((income) =>
+    income.id === id ? { ...income, isEditable: !income.isEditable } : income
+  );
   renderApp();
 };
 
-const updateIncome = (newIncome) => {
-  state.incomes.map((income) => {
-    if (income.id === newIncome.id) {
-      income.isEditable = false;
-      income.name = newIncome.name;
-      income.amount = newIncome.amount;
-    }
-  });
+const updateIncome = (id) => {
+  const inputs = querySelectorAll('.incomes__list input');
+  const newName = inputs[0].value;
+  const newAmount = inputs[1].value;
+  state.incomes = state.incomes.map((income) =>
+    income.id === id
+      ? { ...income, name: newName, amount: newAmount, isEditable: false }
+      : income
+  );
 
   renderApp();
 };
@@ -125,18 +95,20 @@ const deleteIncome = (incomeId) => {
   renderApp();
 };
 
+const sum = (incomes) =>
+  incomes.reduce((acc, income) => acc + Number(income.amount), 0);
+
 // Events
 querySelector('.incomes__form').addEventListener('submit', (e) => {
   e.preventDefault();
 
   const { incomeName, incomeAmount } = e.currentTarget.elements;
   const incomeId = nanoid();
-
   const newIncome = {
     id: incomeId,
     name: incomeName.value,
     amount: incomeAmount.value,
-    isEditable: false,
+    isEdiable: false,
   };
 
   addIncome(newIncome);
@@ -145,9 +117,4 @@ querySelector('.incomes__form').addEventListener('submit', (e) => {
   e.currentTarget.elements[1].value = '';
 });
 
-let selector = '.incomes__btns > div > button:nth-child(1)';
-
-if (querySelector(selector) !== null) {
-  let btnsEdit = querySelectorAll(selector);
-  console.log(btnsEdit);
-}
+// EXPENSES

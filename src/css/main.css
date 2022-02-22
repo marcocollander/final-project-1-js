@@ -116,7 +116,7 @@ body {
   margin: 10px 0;
   font-size: 2.5rem;
 }
-.expenses__aside {
+.expenses__form {
   display: flex;
   justify-content: space-between;
 }
@@ -126,9 +126,16 @@ body {
   border: none;
 }
 .expenses__input {
-  width: 30%;
-  font-size: 1.2rem;
+  width: 35%;
+  padding: 0 10px;
+  font-size: 1.6rem;
   text-align: center;
+}
+.expenses__edition {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
 .saldo__text {

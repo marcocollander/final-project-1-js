@@ -24,14 +24,9 @@
       <header class="incomes__header">
         <h1 class="incomes__heading">Przychody</h1>
         <form class="incomes__form">
-          <input name="incomeName" data-id="some-uuid-should-be-here"
-                 class="incomes__input" type="text"
-                 placeholder="Nazwa przychodu">
-          <input name="incomeAmount" data-id="some-uuid-be-here"
-                 class="incomes__input" type="text"
-                 placeholder="Kwota">
-          <button id="incomeBtn" class="incomes__btn" type="submit">Dodaj
-          </button>
+          <input name="incomeName" class="incomes__input" type="text" placeholder="Nazwa przychodu">
+          <input name="incomeAmount" class="incomes__input" type="text" placeholder="Kwota">
+          <button id="incomeBtn" class="incomes__btn" type="submit">Dodaj</button>
         </form>
       </header>
       <div class="incomes__edition">
@@ -40,30 +35,28 @@
       </div>
       <p class="saldo">
         <span class="saldo__text">Suma przychodów: </span>
-        <span id="incomeSum" class="saldo__input"> 0 zł</span>
+        <span id="sumIncomes" class="saldo__input">0 zł</span>
       </p>
     </section>
 
     <section class="expenses">
       <header class="expenses__header">
         <h1 class="expenses__heading">Wydatki</h1>
-        <div class="expenses__aside">
-          <input id="expensesName" class="expenses__input" type="text"
-                 placeholder="Nazwa wydatku">
-          <input id="expenses" class="expenses__input" type="text"
-                 placeholder="Kwota">
+        <form class="expenses__form">
+          <input id="expensesName" class="expenses__input" type="text" placeholder="Nazwa wydatku">
+          <input id="expensesAmount" class="expenses__input" type="text" placeholder="Kwota">
           <button class="expenses__btn" type="submit">Dodaj</button>
-        </div>
+        </form>
       </header>
+
       <div class="expenses__edition">
-        <ul class="expenses__edition-list"></ul>
-        <div class="expenses_edition-btns"></div>
+        <ol class="expenses__list"></ol>
+        <div class="expenses__btns"></div>
       </div>
-      <div class="saldo">
-        <label class="saldo__text" for="saldoText">Suma wydatków: </label>
-        <input id="saldoText" class="saldo__input" type="text"
-               placeholder="0 zł">
-      </div>
+      <p class="saldo">
+        <span class="saldo__text">Suma wydatków: </span>
+        <span id="sumExpenses" class="saldo__input">0 zł</span>
+      </p>
     </section>
   </main>
 

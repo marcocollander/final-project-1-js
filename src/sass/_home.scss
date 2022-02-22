@@ -86,7 +86,7 @@
     font-size: 2.5rem;
   }
 
-  &__aside {
+  &__form {
     display: flex;
     justify-content: space-between;
   }
@@ -98,9 +98,17 @@
   }
 
   &__input {
-    width: 30%;
-    font-size: 1.2rem;
+    width: 35%;
+    padding: 0 10px;
+    font-size: 1.6rem;
     text-align: center;
+  }
+
+  &__edition {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
   }
 }
 
