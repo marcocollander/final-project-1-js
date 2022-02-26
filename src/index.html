@@ -14,8 +14,7 @@
     <div class="header__logo"></div>
 
     <aside class="header__message">
-      <input id="message" type="text" class="header__message-input"
-             value="Możesz jeszcze wydać 0 złoty">
+      <p id="message" class="header__message-input">Możesz jeszcze wydać 0 złoty</p>
     </aside>
   </header>
 
@@ -24,7 +23,8 @@
       <header class="incomes__header">
         <h1 class="incomes__heading">Przychody</h1>
         <form class="incomes__form">
-          <input name="incomeName" class="incomes__input" type="text" placeholder="Nazwa przychodu">
+          <input
+            name="incomeName" class="incomes__input" type="text" placeholder="Nazwa przychodu">
           <input name="incomeAmount" class="incomes__input" type="text" placeholder="Kwota">
           <button id="incomeBtn" class="incomes__btn" type="submit">Dodaj</button>
         </form>
@@ -43,8 +43,8 @@
       <header class="expenses__header">
         <h1 class="expenses__heading">Wydatki</h1>
         <form class="expenses__form">
-          <input id="expensesName" class="expenses__input" type="text" placeholder="Nazwa wydatku">
-          <input id="expensesAmount" class="expenses__input" type="text" placeholder="Kwota">
+          <input name="expenseName" class="expenses__input" type="text" placeholder="Nazwa wydatku">
+          <input name="expenseAmount" class="expenses__input" type="text" placeholder="Kwota">
           <button class="expenses__btn" type="submit">Dodaj</button>
         </form>
       </header>

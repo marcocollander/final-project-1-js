@@ -25,8 +25,7 @@ const createInput = (parentElem, valueName, valueAmount) => {
   inputAmount.value = `${valueAmount}`;
 };
 
-// INCOMES
-
+// INCOMES;
 const renderIncomes = () => {
   querySelector('.incomes__list').innerHTML = '';
   querySelector('.incomes__btns').innerHTML = '';
@@ -51,22 +50,46 @@ const renderIncomes = () => {
   });
 };
 
-const renderSumIncomes = () => {
-  const refSumIncomes = querySelector('#sumIncomes');
-  let sumIncomes = sum(state.incomes);
+const renderSumBudget = (selector) => {
+  let sumBudget = 0;
 
-  refSumIncomes.innerText = `${sumIncomes} zł`;
-  querySelector('#message').value = `Możesz jeszcze wydać ${sumIncomes} zł`;
+  if (selector === '#sumIncomes') {
+    sumBudget = sum(state.incomes);
+    querySelector(selector).innerText = `${sumBudget} zł`;
+  } else if (selector === '#sumExpenses') {
+    sumBudget = sum(state.expenses);
+    querySelector('#sumExpenses').innerText = `${sumBudget} zł`;
+  }
+
+  return sumBudget;
+};
+
+const renderSaldo = () => {
+  let saldo = renderSumBudget('#sumIncomes') - renderSumBudget('#sumExpenses');
+  if (saldo > 0) {
+    querySelector('#message').innerText = `Możesz jeszcze wydać ${saldo} zł`;
+  } else if (saldo === 0) {
+    querySelector('#message').innerText = `Bilans wynosi ${saldo} zł`;
+  } else {
+    querySelector(
+      '#message'
+    ).innerText = `Bilans jest ujemny. Jesteś na minusie ${Math.abs(saldo)} zł`;
+  }
 };
 
 const renderApp = () => {
   renderIncomes();
-  renderSumIncomes();
+  renderExpenses();
+  renderSaldo();
 };
 
 // UPDATE (CONTROLER)
-const addIncome = (newIncome) => {
-  state.incomes = [...state.incomes, newIncome];
+const addBudgetItem = (budgeItem, state) => {
+  if (budgeItem.budgetItemId === 'incomes') {
+    state.incomes = [...state.incomes, budgeItem];
+  } else if (budgeItem.budgetItemId === 'expenses') {
+    state.expenses = [...state.expenses, budgeItem];
+  }
   renderApp();
 };
 
@@ -104,17 +127,90 @@ querySelector('.incomes__form').addEventListener('submit', (e) => {
 
   const { incomeName, incomeAmount } = e.currentTarget.elements;
   const incomeId = nanoid();
+
   const newIncome = {
     id: incomeId,
+    budgetItemId: 'incomes',
     name: incomeName.value,
     amount: incomeAmount.value,
-    isEdiable: false,
+    isEditable: false,
   };
 
-  addIncome(newIncome);
+  addBudgetItem(newIncome, state);
 
   e.currentTarget.elements[0].value = '';
   e.currentTarget.elements[1].value = '';
 });
 
+const updateExpense = (id) => {
+  const inputs = querySelectorAll('.expenses__list input');
+  const newName = inputs[0].value;
+  const newAmount = inputs[1].value;
+  state.expenses = state.expenses.map((expense) =>
+    expense.id === id
+      ? { ...expense, name: newName, amount: newAmount, isEditable: false }
+      : expense
+  );
+
+  renderApp();
+};
+
+const toggleExpenseEditable = (id) => {
+  state.expenses = state.expenses.map((expense) =>
+    expense.id === id
+      ? { ...expense, isEditable: !expense.isEditable }
+      : expense
+  );
+  renderApp();
+};
+
+const deleteExpense = (expenseId) => {
+  state.expenses = state.expenses.filter(({ id }) => id !== expenseId);
+  renderApp();
+};
+
 // EXPENSES
+const renderExpenses = () => {
+  querySelector('.expenses__list').innerHTML = '';
+  querySelector('.expenses__btns').innerHTML = '';
+
+  state.expenses.forEach(({ id, name, amount, isEditable }) => {
+    const li = createElement('li');
+    const div = createElement('div');
+    li.textContent = `${name} - ${amount} zł`;
+
+    if (isEditable) {
+      li.innerHTML = '';
+
+      createInput(li, name, amount);
+      createBtn(div, 'Tak', updateExpense, id);
+      createBtn(div, 'Nie', toggleExpenseEditable, id);
+    } else {
+      createBtn(div, 'Edytuj', toggleExpenseEditable, id);
+      createBtn(div, 'Usuń', deleteExpense, id);
+    }
+    querySelector('.expenses__list').appendChild(li);
+    querySelector('.expenses__btns').appendChild(div);
+  });
+};
+
+//Events
+querySelector('.expenses__form').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const { expenseName, expenseAmount } = e.currentTarget.elements;
+  const expenseId = nanoid();
+
+  const newExpense = {
+    id: expenseId,
+    budgetItemId: 'expenses',
+    name: expenseName.value,
+    amount: expenseAmount.value,
+    isEditable: false,
+  };
+
+  addBudgetItem(newExpense, state);
+
+  e.currentTarget.elements[0].value = '';
+  e.currentTarget.elements[1].value = '';
+});
