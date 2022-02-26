@@ -25,31 +25,6 @@ const createInput = (parentElem, valueName, valueAmount) => {
   inputAmount.value = `${valueAmount}`;
 };
 
-// INCOMES;
-const renderIncomes = () => {
-  querySelector('.incomes__list').innerHTML = '';
-  querySelector('.incomes__btns').innerHTML = '';
-
-  state.incomes.forEach(({ id, name, amount, isEditable }) => {
-    const li = createElement('li');
-    const div = createElement('div');
-    li.textContent = `${name} - ${amount} zł`;
-
-    if (isEditable) {
-      li.innerHTML = '';
-
-      createInput(li, name, amount);
-      createBtn(div, 'Tak', updateIncome, id);
-      createBtn(div, 'Nie', toggleIncomeEditable, id);
-    } else {
-      createBtn(div, 'Edytuj', toggleIncomeEditable, id);
-      createBtn(div, 'Usuń', deleteIncome, id);
-    }
-    querySelector('.incomes__list').appendChild(li);
-    querySelector('.incomes__btns').appendChild(div);
-  });
-};
-
 const renderSumBudget = (selector) => {
   let sumBudget = 0;
 
@@ -77,9 +52,47 @@ const renderSaldo = () => {
   }
 };
 
+// type = 'expenses' / 'incomes'
+// iterrableState = state.expenses / state.incomes
+const renderBudget = (type, iterrableState) => {
+  querySelector(`.${type}__list`).innerHTML = '';
+  querySelector(`.${type}__btns`).innerHTML = '';
+
+  iterrableState.forEach(({ id, name, amount, isEditable }) => {
+    const li = createElement('li');
+    const div = createElement('div');
+    li.textContent = `${name} - ${amount} zł`;
+
+    if (isEditable) {
+      li.innerHTML = '';
+
+      createInput(li, name, amount);
+
+      if (type === 'expenses') {
+        createBtn(div, 'Tak', updateExpense, id);
+        createBtn(div, 'Nie', toggleExpenseEditable, id);
+      } else {
+        createBtn(div, 'Tak', updateIncome, id);
+        createBtn(div, 'Nie', toggleIncomeEditable, id);
+      }
+    } else {
+      if (type === 'expenses') {
+        createBtn(div, 'Edytuj', toggleExpenseEditable, id);
+        createBtn(div, 'Usuń', deleteExpense, id);
+      } else {
+        createBtn(div, 'Edytuj', toggleIncomeEditable, id);
+        createBtn(div, 'Usuń', deleteIncome, id);
+      }
+    }
+
+    querySelector(`.${type}__list`).appendChild(li);
+    querySelector(`.${type}__btns`).appendChild(div);
+  });
+};
+
 const renderApp = () => {
-  renderIncomes();
-  renderExpenses();
+  renderBudget('incomes', state.incomes);
+  renderBudget('expenses', state.expenses);
   renderSaldo();
 };
 
@@ -168,32 +181,6 @@ const deleteExpense = (expenseId) => {
   state.expenses = state.expenses.filter(({ id }) => id !== expenseId);
   renderApp();
 };
-
-// EXPENSES
-const renderExpenses = () => {
-  querySelector('.expenses__list').innerHTML = '';
-  querySelector('.expenses__btns').innerHTML = '';
-
-  state.expenses.forEach(({ id, name, amount, isEditable }) => {
-    const li = createElement('li');
-    const div = createElement('div');
-    li.textContent = `${name} - ${amount} zł`;
-
-    if (isEditable) {
-      li.innerHTML = '';
-
-      createInput(li, name, amount);
-      createBtn(div, 'Tak', updateExpense, id);
-      createBtn(div, 'Nie', toggleExpenseEditable, id);
-    } else {
-      createBtn(div, 'Edytuj', toggleExpenseEditable, id);
-      createBtn(div, 'Usuń', deleteExpense, id);
-    }
-    querySelector('.expenses__list').appendChild(li);
-    querySelector('.expenses__btns').appendChild(div);
-  });
-};
-
 //Events
 querySelector('.expenses__form').addEventListener('submit', (e) => {
   e.preventDefault();
