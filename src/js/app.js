@@ -16,7 +16,7 @@ const createBtn = (parentElement, textContent, callback, id) => {
   btn.addEventListener('click', () => callback(id));
 };
 
-const createInput = (parentElem, valueName, valueAmount) => {
+const createInputs = (parentElem, valueName, valueAmount) => {
   const inputName = createElement('input');
   const inputAmount = createElement('input');
   parentElem.appendChild(inputName);
@@ -52,13 +52,12 @@ const renderSaldo = () => {
   }
 };
 
-// type = 'expenses' / 'incomes'
-// iterrableState = state.expenses / state.incomes
-const renderBudget = (type, iterrableState) => {
+// type = expenses/incomes
+const renderBudget = (type, budgetState) => {
   querySelector(`.${type}__list`).innerHTML = '';
   querySelector(`.${type}__btns`).innerHTML = '';
 
-  iterrableState.forEach(({ id, name, amount, isEditable }) => {
+  budgetState.forEach(({ id, name, amount, isEditable }) => {
     const li = createElement('li');
     const div = createElement('div');
     li.textContent = `${name} - ${amount} zł`;
@@ -66,7 +65,7 @@ const renderBudget = (type, iterrableState) => {
     if (isEditable) {
       li.innerHTML = '';
 
-      createInput(li, name, amount);
+      createInputs(li, name, amount);
 
       if (type === 'expenses') {
         createBtn(div, 'Tak', updateExpense, id);
@@ -131,29 +130,8 @@ const deleteIncome = (incomeId) => {
   renderApp();
 };
 
-const sum = (incomes) =>
-  incomes.reduce((acc, income) => acc + Number(income.amount), 0);
-
-// Events
-querySelector('.incomes__form').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const { incomeName, incomeAmount } = e.currentTarget.elements;
-  const incomeId = nanoid();
-
-  const newIncome = {
-    id: incomeId,
-    budgetItemId: 'incomes',
-    name: incomeName.value,
-    amount: incomeAmount.value,
-    isEditable: false,
-  };
-
-  addBudgetItem(newIncome, state);
-
-  e.currentTarget.elements[0].value = '';
-  e.currentTarget.elements[1].value = '';
-});
+const sum = (stateBudget) =>
+  stateBudget.reduce((acc, itemState) => acc + Number(itemState.amount), 0);
 
 const updateExpense = (id) => {
   const inputs = querySelectorAll('.expenses__list input');
@@ -181,23 +159,31 @@ const deleteExpense = (expenseId) => {
   state.expenses = state.expenses.filter(({ id }) => id !== expenseId);
   renderApp();
 };
-//Events
-querySelector('.expenses__form').addEventListener('submit', (e) => {
-  e.preventDefault();
 
-  const { expenseName, expenseAmount } = e.currentTarget.elements;
-  const expenseId = nanoid();
+const createBudgetItem = (type, newItem) => {
+  newItem.id = nanoid();
+  newItem.budgetItemId = type;
+  newItem.isEditable = false;
 
-  const newExpense = {
-    id: expenseId,
-    budgetItemId: 'expenses',
-    name: expenseName.value,
-    amount: expenseAmount.value,
-    isEditable: false,
-  };
+  addBudgetItem(newItem, state);
+};
 
-  addBudgetItem(newExpense, state);
+const addEventListener = (type) => {
+  querySelector(`.${type}__form`).addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  e.currentTarget.elements[0].value = '';
-  e.currentTarget.elements[1].value = '';
-});
+    const newItem = {
+      name: e.currentTarget.elements[0].value,
+      amount: e.currentTarget.elements[1].value,
+    };
+
+    type === 'incomes'
+      ? createBudgetItem('incomes', newItem)
+      : createBudgetItem('expenses', newItem);
+    e.currentTarget.elements[0].value = '';
+    e.currentTarget.elements[1].value = '';
+  });
+};
+
+addEventListener('incomes');
+addEventListener('expenses');
