@@ -6,9 +6,10 @@
   height: 30vh;
 
   &__logo{
-    width: 100%;
+    max-width: 960px;
     height: 10vh;
-    background-image: url('../images/logo-start.png');
+    width: 100%;
+    background-image: url('../images/euro.jpg');
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -21,6 +22,14 @@
     &-input {
       width: 100%;
       font-size: 1.8rem;
+    }
+  }
+}
+
+@media (min-width: 560px){
+  .header {
+    &__logo {
+      height: 15vh;
     }
   }
 }
