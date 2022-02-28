@@ -5,25 +5,27 @@
   "main": "src/index.html",
   "scripts": {
     "init-project": "npm install && npm-run-all init:*",
-    "init:dirs": "mkdirp dist src/sass src/css src/vendor src/images src/js",
+    "init:dirs": "mkdirp build src/sass src/css src/vendor src/images src/js",
     "init:files": "touch README.md src/index.html src/sass/main.scss src/js/app.js",
     "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
-    "init:gitignore:custom": "echo \"dist\" >> .gitignore",
+    "init:gitignore:custom": "echo \"build\" >> .gitignore",
     "test": "npm-run-all test:*",
     "test:html": "html-validate src/*.html",
     "test:js": "eslint src/js/",
     "test:scss": "stylelint src/sass/",
     "build": "npm-run-all build:* test",
-    "build:clean": "rimraf dist && mkdirp dist",
-    "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" dist",
-    "build:sass": "sass --style=compressed --no-source-map src/sass:dist//css",
-    "build:autoprefixer": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "build:clean": "rimraf build && mkdirp build",
+    "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" build",
+    "build:sass": "sass --style=compressed --no-source-map src/sass:build//css",
+    "build:autoprefixer": "postcss build/css/*.css --use autoprefixer -d build/css",
     "build-dev": "npm-run-all build-dev:sass build:autoprefixer",
-    "build-dev:sass": "sass --style=expanded --source-map src/sass:dist/css",
+    "build-dev:sass": "sass --style=expanded --source-map src/sass:build/css",
     "watch": "npm-run-all build build-dev -p watch:*",
-    "watch:browsersync": "browser-sync start --server dist --files \"dist/**/*\"",
+    "watch:browsersync": "browser-sync start --server build --files \"build/**/*\"",
     "watch:sassprefixer": "onchange \"src/sass/**/*.scss\" -- npm run build-dev",
-    "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist"
+    "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/marcocollander/final-project-1-js/issues"
   },
-  "homepage": "https://github.com/marcocollander/final-project-1-js#readme",
+  "homepage": "https:/marcocollander.github.io/final-project-1-js",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "browser-sync": "^2.27.7",
@@ -43,6 +45,7 @@
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "globstar": "^1.0.0",
     "html-validate": "^6.3.2",
     "mkdirp": "^1.0.4",
