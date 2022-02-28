@@ -1,1 +1,1 @@
-web: dist/index.html
+build/index.html
